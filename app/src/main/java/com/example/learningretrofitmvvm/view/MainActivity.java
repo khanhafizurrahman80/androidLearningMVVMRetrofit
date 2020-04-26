@@ -1,6 +1,7 @@
 package com.example.learningretrofitmvvm.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -32,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        articleViewModel = new ViewModelProvider(this).get(ArticleViewModel.class);
 
-        initialization();
+        articleViewModel = new ViewModelProvider(this).get(ArticleViewModel.class);
+        articleViewModel.init();
 
         getMoviesArticles();
+        initialization();
 
     }
 
@@ -57,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         my_recycler_view.setAdapter(adapter);
 
         //View Model
-//        articleViewModel = new ViewModelProvider(this).get(ArticleViewModel.class);
     }
 
 
@@ -70,5 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
     }
 }

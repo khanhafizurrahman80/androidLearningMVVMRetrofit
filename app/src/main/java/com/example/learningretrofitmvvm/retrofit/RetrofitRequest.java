@@ -8,6 +8,7 @@ public class RetrofitRequest {
     private static Retrofit retrofit;
     private static final String BASE_URL = "https://newsapi.org/";
 
+
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -16,5 +17,9 @@ public class RetrofitRequest {
                     .build();
         }
         return retrofit;
+    }
+
+    public static <S> S createService(Class<S> serviceClass) {
+        return getRetrofitInstance().create(serviceClass);
     }
 }

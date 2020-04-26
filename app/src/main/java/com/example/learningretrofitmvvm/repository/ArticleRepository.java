@@ -15,16 +15,19 @@ import retrofit2.Response;
 
 public class ArticleRepository {
     private static final String TAG = ArticleRepository.class.getSimpleName();
+    private static ArticleRepository articleRepository;
     private ApiRequest apiRequest;
 
-    public ArticleRepository(ApiRequest apiRequest) {
-        this.apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
+    public static ArticleRepository getInstance() {
+        if (articleRepository == null){
+            articleRepository = new ArticleRepository();
+        }
+        return articleRepository;
     }
 
     public ArticleRepository() {
-
+        apiRequest = RetrofitRequest.createService(ApiRequest.class);
     }
-
 
     public LiveData<ArticleResponse> getMovieArticles(String query, String key){
         final MutableLiveData<ArticleResponse> data = new MutableLiveData<>();
