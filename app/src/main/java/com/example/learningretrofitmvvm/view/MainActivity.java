@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         articleViewModel = new ViewModelProvider(this).get(ArticleViewModel.class);
         articleViewModel.init();
 
-        getMoviesArticles();
         initialization();
+        getMoviesArticles();
 
     }
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         //use a linear layout manager
-        layoutManager = new LinearLayoutManager(MainActivity.this);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
         my_recycler_view.setLayoutManager(layoutManager);
 
         // use this setting to improve performance if you know that changes
